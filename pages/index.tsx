@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import axios from 'axios'
 import styles from '@/styles/Home.module.css'
 
@@ -55,7 +56,7 @@ export default function Home() {
           <p>Powered by OpenAI</p>
           <hr />
           {/* style anchor tag to look like a classic link */}
-          <a href="/todo" className="text-blue-500 hover:text-blue-800">Click for Todo List</a>
+          <Link href="/todo" className="text-blue-500 hover:text-blue-800">Click for Todo List</Link>
         </div>
       </main>
     </>
