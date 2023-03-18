@@ -3,7 +3,6 @@ import { ChangeEvent, useState } from 'react'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import axios from 'axios'
-import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +16,6 @@ export default function Home() {
 
   const handleClick = async () => {
     try {
-       // make call to openai api, using the input as the prompt
-      
       const { data, status } = await axios.post('/api/oai_chat', {
         params: {
           prompt: input
@@ -39,26 +36,21 @@ export default function Home() {
   }
 
   return (
-    <>
-      <main className={styles.main}>
-        {/* use tailwind inline styling to set the outer classname to align as columns equally spaced across the page. within the panels, center and align in rows */}
+      <div className="min-h-screen min-w-screen flex flex-row justify-center items-center ">
         <div className="flex flex-row space-between items-center justify-center">
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center w-64 h-32 border border-gray-300">
             <textarea onChange={(e) => handleChange(e)} value={input} placeholder="Enter your text" />
             <button onClick={handleClick}>Go</button>
           </div>
           <div className="flex flex-col justify-center items-center m-96">
-            {/* <h1 className="m-96">Your text:</h1> */}
-            <p className={styles.wrap}>{result}</p>
+            <p className="">{result}</p>
           </div>
         </div>
         <div className="position-absolute bottom-0 flex flex-col">
           <p>Powered by OpenAI</p>
           <hr />
-          {/* style anchor tag to look like a classic link */}
-          <Link href="/todo" className="text-blue-500 hover:text-blue-800">Click for Todo List</Link>
+          <Link href="/todo" className="text-blue-500 hover:text-blue-800">Todo List</Link>
         </div>
-      </main>
-    </>
+      </div>
   )
 }
