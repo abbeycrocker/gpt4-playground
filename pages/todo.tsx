@@ -9,7 +9,7 @@ export default function Todo() {
             <li>
               <s>Chat mode. turn old box into uneditable, add new input below, feed all as prompt</s>
             </li>
-            <li>GPT 3.5 vs GPT4 button</li>
+            <li><s>GPT 3.5 vs GPT4 button</s></li>
             <li>Stream tokens in to help loading UX</li>
             <li>Temperature and max-token options</li>
             <li>Add system prompt option</li>

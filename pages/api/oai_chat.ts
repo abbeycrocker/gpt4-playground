@@ -38,8 +38,7 @@ export default async function handler(
         const response = await openai.createChatCompletion({
             model: isFour ? "gpt4" : "gpt-3.5-turbo",
             messages: messages,
-            temperature: 1,
-            max_tokens: 2048
+            temperature: 1
         })
         res.status(200).json({ data: response.data })
     }
