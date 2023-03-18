@@ -1,13 +1,7 @@
-// create a page that lists all the todos
-
-// Path: pages/todo.tsx
-
-import styles from '@/styles/Home.module.css'
-
 export default function Todo() {
   return (
     <>
-      <main className={styles.main}>
+      <main className="">
         <h1>Todos:</h1>
         <ul>
             <li>Chat mode. turn old box into uneditable, add new input below, feed all as prompt</li>
