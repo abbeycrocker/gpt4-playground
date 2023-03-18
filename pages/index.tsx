@@ -13,12 +13,14 @@ export default function Home() {
   const [input, setInput] = useState('')
   const [chat, setChat] = useState<Chat[]>([])
   const [four, setFour] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
   
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value)
   }
 
   const handleClick = async () => {
+    setLoading(true)
     const newChat = {
       text: input,
       isUser: true,
@@ -45,10 +47,12 @@ export default function Home() {
         const responseChat = {text: response, isUser: false, isFour: four}
         // console.log(responseChat)
         setChat([...chat, newChat, responseChat])
+        setLoading(false)
       }
       
     } catch (error) {
       alert('An error has occured')
+      setLoading(false)
     }
    
   }
@@ -67,6 +71,7 @@ export default function Home() {
               )
             })
             }
+            {loading && <p className="items-center italic">Loading...</p>}
           </div>
           <div className="flex flex-row justify-between w-full px-4 py-1">
             <textarea className="min-h-min outline-1" onChange={(e) => handleChange(e)} value={input} placeholder="Enter your text" />
