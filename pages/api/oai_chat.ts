@@ -1,5 +1,11 @@
-import { Configuration, OpenAIApi } from "openai";
+import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import type { NextApiRequest, NextApiResponse } from 'next'
+
+type Chat = {
+    text: string,
+    isUser: boolean,
+    isFour: boolean
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,10 +20,24 @@ export default async function handler(
             apiKey: process.env.OPENAI_API_KEY
         });
         const openai = new OpenAIApi(configuration);
+
+        const prompt: string = req.body.params.prompt as string
+        const history: Chat[] = req.body.params.history as Chat[]
+        const isFour: boolean = req.body.params.isFour as boolean
+
+        const old_messages = history.map((chat: Chat) => {
+            return {role: chat.isUser ? 'user' : 'assistant', content: chat.text}
+        })
+
+        const messages = [
+            {role: 'system', content: 'You are a helpful assisant'}, 
+            ...old_messages, 
+            {role: 'user', content: prompt}
+        ] as ChatCompletionRequestMessage[]
        
         const response = await openai.createChatCompletion({
-            model: "gpt-4",
-            messages: [{role: 'user', content: req.body.params.prompt}],
+            model: isFour ? "gpt4" : "gpt-3.5-turbo",
+            messages: messages,
             temperature: 1,
             max_tokens: 2048
         })
