@@ -1,1 +1,1 @@
-Bare bones GPT4 playground
+Bare bones GPT4 / GPT 3.5 playground. See `/todo` page for coming features
