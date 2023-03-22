@@ -9,17 +9,19 @@ type Chat = {
   isFour: boolean
 }
 
+// HASH_PASS="$2b$10$z1oekI3DcQAImTfaJIpyQePfSrbGlRmEueRB4GDItFo2XgkOVFrdm"
 
 
 export default function Home() {
   const [input, setInput] = useState('')
+  const [pass, setPass] = useState<string>('')
   const [chat, setChat] = useState<Chat[]>([])
   const [four, setFour] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
-  const [loggedIn, setLoggedIn] = useState<boolean>(false)
-
+  const [loggedIn, setLoggedIn] = useState<boolean>(false || process.env.NODE_ENV === "development")
   const getHash = async (password: string) => {
-    setInput('')
+    setPass('')
+    console.log(password)
     const { data, status } = await axios.post('/api/hash_pass', {
       params: {
         password
@@ -32,6 +34,11 @@ export default function Home() {
     }
     else {
       const result = data.result as boolean
+      if (result) {
+        alert('Successfully logged in')
+      } else {
+        alert('Incorrect password')
+      }
       setLoggedIn(result)
     }
   }
@@ -41,6 +48,10 @@ export default function Home() {
   }
 
   const handleClick = async () => {
+    if (!loggedIn) {
+      alert('Please enter the password to access the playground')
+      return
+    }
     setLoading(true)
     const newChat = {
       text: input,
@@ -80,9 +91,19 @@ export default function Home() {
 
   return (
       <>
-        {loggedIn ? 
+        {/* {loggedIn ?  */}
           <div className="flex flex-row items-center justify-center min-h-screen">
             <div className="flex flex-col justify-start items-center position absolute top-3">
+              {/* align to top left of screen */}
+            <div className="flex flex-col items-center justify-center position absolute top-0 right-0 w-screen">
+              <div className='flex flex-col items-start'>
+                <h1 className="text-2xs">Enter pass to unlock:</h1>
+                <div className="flex flex-row">
+                  <input type="password" onChange={(e) => setPass(e.target.value)} value={pass} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" />
+                  <button onClick={() => getHash(pass)}>Go</button>
+                </div>
+              </div>
+            </div>
               <h1 className='align-center font-medium text-center text-lg py-8'>GPT-4 Playground</h1>
               <div className="min-h-[70vh] min-w-[25vw] max-h-[75vh] max-w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">
                 {chat.map((item, index) => {
@@ -120,13 +141,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          :
+          {/* :
           <div className="flex flex-col items-center justify-center min-h-screen">
             <h1 className="text-2xl">Please enter your password to access the playground</h1>
             <input type="password" onChange={(e) => setInput(e.target.value)} value={input} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" />
             <button onClick={() => getHash(input)}>Submit</button>
           </div>
-        }
+        } */}
       </>
   )
 }
