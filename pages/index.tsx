@@ -9,9 +9,6 @@ type Chat = {
   isFour: boolean
 }
 
-// HASH_PASS="$2b$10$z1oekI3DcQAImTfaJIpyQePfSrbGlRmEueRB4GDItFo2XgkOVFrdm"
-
-
 export default function Home() {
   const [input, setInput] = useState('')
   const [pass, setPass] = useState<string>('')
