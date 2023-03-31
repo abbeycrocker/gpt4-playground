@@ -74,7 +74,6 @@ export default function Home() {
       else {
         const response = data.data.choices[0].message.content
         const responseChat = {text: response, isUser: false, isFour: four}
-        // console.log(responseChat)
         setChat([...chat, newChat, responseChat])
         setLoading(false)
       }
@@ -91,9 +90,8 @@ export default function Home() {
         {/* {loggedIn ?  */}
           <div className="flex flex-row items-center justify-center min-h-screen">
             <div className="flex flex-col justify-start items-center position absolute top-3">
-              {/* align to top left of screen */}
             <div className="flex flex-col items-center justify-center position absolute top-0 right-0 w-screen">
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start justify-start position absolute left-[7vw] top-3 md:relative'>
                 <h1 className="text-2xs">Enter pass to unlock:</h1>
                 <div className="flex flex-row">
                   <input type="password" onChange={(e) => setPass(e.target.value)} value={pass} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" />
@@ -101,8 +99,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-              <h1 className='align-center font-medium text-center text-lg py-8'>GPT-4 Playground</h1>
-              <div className="min-h-[70vh] min-w-[25vw] max-h-[75vh] max-w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">
+              <h1 className='align-center font-medium text-center text-lg py-8 position max-lg:-right-40 max-lg:relative'>GPT-4 Playground</h1>
+              <div className="h-[70vh]  w-[90vw] md:w-[50vw] xl:w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">
                 {chat.map((item, index) => {
                   return (
                     <div key={index} className="flex flex-row p-1">
@@ -120,7 +118,6 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row position absolute bottom-0 justify-between w-screen p-4">
-              {/* create controlled radio button form for gpt 3.5 vs 5 */}
               <form>
                 <label>
                   <input type="radio" id="3.5" value="GPT3.5" checked={!four} onChange={() => setFour(false)}/>
@@ -134,17 +131,9 @@ export default function Home() {
               <div>
                 <button className="mx-2 bg-stone-100 hover:bg-stone-200" onClick={() => setChat([])}>Reset Chat</button>
                 <Link href="/todo" className="">Todo List</Link>
-                {/* <button onClick={() => getHash('loyola')}>Hash</button> */}
               </div>
             </div>
           </div>
-          {/* :
-          <div className="flex flex-col items-center justify-center min-h-screen">
-            <h1 className="text-2xl">Please enter your password to access the playground</h1>
-            <input type="password" onChange={(e) => setInput(e.target.value)} value={input} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" />
-            <button onClick={() => getHash(input)}>Submit</button>
-          </div>
-        } */}
       </>
   )
 }
