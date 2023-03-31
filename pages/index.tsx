@@ -100,7 +100,7 @@ export default function Home() {
               </div>
             </div>
               <h1 className='align-center font-medium text-center text-lg py-8 position max-lg:-right-40 max-lg:relative'>GPT-4 Playground</h1>
-              <div className="h-[70vh]  w-[90vw] md:w-[50vw] xl:w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">
+              <div className="h-[60vh] w-[90vw] md:h-[70vh] md:w-[50vw] xl:w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">
                 {chat.map((item, index) => {
                   return (
                     <div key={index} className="flex flex-row p-1">
@@ -112,7 +112,7 @@ export default function Home() {
                 }
                 {loading && <p className="items-center italic">Loading...</p>}
               </div>
-              <div className="flex flex-row justify-between w-full px-4 py-1">
+              <div className="flex flex-row justify-between w-full px-4 py-1 mb-[5vh] md:mb-0">
                 <textarea className="min-h-min outline-1" onChange={(e) => handleChange(e)} value={input} placeholder="Enter your text" />
                 <button className='outline-1' onClick={handleClick}>Go</button>
               </div>
