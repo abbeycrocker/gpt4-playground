@@ -15,6 +15,7 @@ export default function Todo() {
             <li>Add system prompt option</li>
             <li>Price tag based on tokenizer</li>
             <li>auth?</li>
+            <li>code and tex formatting</li>
         </ul>
         <Link className="position absolute bottom-0" href='/'>Home</Link>
       </main>
