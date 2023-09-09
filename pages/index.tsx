@@ -15,30 +15,30 @@ export default function Home() {
   const [chat, setChat] = useState<Chat[]>([])
   const [four, setFour] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
-  const [loggedIn, setLoggedIn] = useState<boolean>(false || process.env.NODE_ENV === "development")
-  const getHash = async (password: string) => {
-    setPass('')
-    console.log(password)
-    const { data, status } = await axios.post('/api/hash_pass', {
-      params: {
-        password
-      }
-    })
+  const [loggedIn, setLoggedIn] = useState<boolean>(true || process.env.NODE_ENV === "development")
+  // const getHash = async (password: string) => {
+  //   setPass('')
+  //   console.log(password)
+  //   const { data, status } = await axios.post('/api/hash_pass', {
+  //     params: {
+  //       password
+  //     }
+  //   })
   
-    if (status !== 200) {
-      console.log(status)
-      throw new Error('Error')
-    }
-    else {
-      const result = data.result as boolean
-      if (result) {
-        alert('Successfully logged in')
-      } else {
-        alert('Incorrect password')
-      }
-      setLoggedIn(result)
-    }
-  }
+  //   if (status !== 200) {
+  //     console.log(status)
+  //     throw new Error('Error')
+  //   }
+  //   else {
+  //     const result = data.result as boolean
+  //     if (result) {
+  //       alert('Successfully logged in')
+  //     } else {
+  //       alert('Incorrect password')
+  //     }
+  //     setLoggedIn(result)
+  //   }
+  // }
   
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value)
@@ -91,13 +91,13 @@ export default function Home() {
           <div className="flex flex-row items-center justify-center min-h-screen">
             <div className="flex flex-col justify-start items-center position absolute top-3">
             <div className="flex flex-col items-center justify-center position absolute top-0 right-0 w-screen">
-              <div className='flex flex-col items-start justify-start position absolute left-[7vw] top-3 md:relative'>
+              {/* <div className='flex flex-col items-start justify-start position absolute left-[7vw] top-3 md:relative'>
                 <h1 className="text-2xs">Enter pass to unlock:</h1>
                 <div className="flex flex-row">
-                  <input type="password" onChange={(e) => setPass(e.target.value)} value={pass} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" />
-                  <button onClick={() => getHash(pass)}>Go</button>
+                  {/* <input type="password" onChange={(e) => setPass(e.target.value)} value={pass} className="border-1 border-gray-500 rounded-md p-1 bg-stone-200" /> */}
+                  {/* <button onClick={() => getHash(pass)}>Go</button> *
                 </div>
-              </div>
+              </div> */}
             </div>
               <h1 className='align-center font-medium text-center text-lg py-8 position max-lg:-right-40 max-lg:relative'>GPT-4 Playground</h1>
               <div className="h-[60vh] w-[90vw] md:h-[70vh] md:w-[50vw] xl:w-[25vw] relative border-[1px] border-gray-500 flex-col justify-between overflow-y-scroll">

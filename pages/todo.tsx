@@ -14,7 +14,7 @@ export default function Todo() {
             <li>Temperature and max-token options</li>
             <li>Add system prompt option</li>
             <li>Price tag based on tokenizer</li>
-            <li>Some sort of basic auth so AJ can not get charged </li>
+            <li>auth?</li>
         </ul>
         <Link className="position absolute bottom-0" href='/'>Home</Link>
       </main>
